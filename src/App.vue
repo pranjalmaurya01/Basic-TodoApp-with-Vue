@@ -73,9 +73,13 @@ export default {
       } else alert('Error Toggling Remainder');
     },
     async fetchTasks() {
-      const res = await fetch(backendUrl + 'tasks');
-      const data = await res.json();
-      this.tasks = data;
+      try {
+        const res = await fetch(backendUrl + 'tasks');
+        const data = await res.json();
+        this.tasks = data;
+      } catch (e) {
+        alert('Please run backend server with command "yarn backend"');
+      }
     },
   },
   created() {
